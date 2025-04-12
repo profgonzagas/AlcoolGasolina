@@ -1,30 +1,30 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:alcoolgasolina/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Teste de validação de campos vazios', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: CombustivelApp()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Limpa os valores padrão dos campos de eficiência
+    await tester.enterText(find.byType(TextFormField).at(2), '');
+    await tester.enterText(find.byType(TextFormField).at(3), '');
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Toca no botão calcular sem preencher os campos
+    await tester.tap(find.text('CALCULAR'));
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verifica mensagens de erro (2 campos de preço + 2 campos de eficiência limpos)
+    expect(find.text('Valor inválido'), findsNWidgets(4));
   });
+
+  testWidgets('Teste de presença do título do app', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: CombustivelApp()));
+
+    expect(find.text('Álcool ou Gasolina?'), findsOneWidget); // AppBar
+    expect(find.text('Preços dos Combustíveis'), findsOneWidget); // Card 1
+    expect(find.text('Eficiência do Veículo'), findsOneWidget); // Card 2
+  });
+
+
 }

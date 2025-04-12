@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:alcoolgasolina/main.dart';
 
 void main() {
-  testWidgets('Teste de validação de campos vazios', (WidgetTester tester) async {
+  testWidgets('Teste de validação de campos vazios',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: CombustivelApp()));
 
     // Limpa os valores padrão dos campos de eficiência
@@ -18,13 +19,12 @@ void main() {
     expect(find.text('Valor inválido'), findsNWidgets(4));
   });
 
-  testWidgets('Teste de presença do título do app', (WidgetTester tester) async {
+  testWidgets('Teste de presença do título do app',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: CombustivelApp()));
 
     expect(find.text('Álcool ou Gasolina?'), findsOneWidget); // AppBar
     expect(find.text('Preços dos Combustíveis'), findsOneWidget); // Card 1
     expect(find.text('Eficiência do Veículo'), findsOneWidget); // Card 2
   });
-
-
 }

@@ -91,8 +91,8 @@ class HomePageState extends State<HomePage> {
     _formKey.currentState?.reset();
     _alcoolController.clear();
     _gasolinaController.clear();
-    _eficienciaAlcoolController.text = '7.0';
-    _eficienciaGasolinaController.text = '10.0';
+    _eficienciaAlcoolController.text = '11.0';
+    _eficienciaGasolinaController.text = '13.0';
     setState(() {
       _resultado = '';
       _showDetails = false;

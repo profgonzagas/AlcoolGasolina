@@ -22,14 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _calcular() {
     if (_formKey.currentState!.validate()) {
-      final double alcool = double.parse(_alcoolController.text.replaceAll(',', '.'));
-      final double gasolina = double.parse(_gasolinaController.text.replaceAll(',', '.'));
+      final double alcool =
+          double.parse(_alcoolController.text.replaceAll(',', '.'));
+      final double gasolina =
+          double.parse(_gasolinaController.text.replaceAll(',', '.'));
 
       final resultado = alcool / gasolina;
       setState(() {
-        _mensagemResultado = resultado < 0.7
-            ? 'Abasteça com Álcool'
-            : 'Abasteça com Gasolina';
+        _mensagemResultado =
+            resultado < 0.7 ? 'Abasteça com Álcool' : 'Abasteça com Gasolina';
       });
     } else {
       setState(() {
@@ -59,22 +60,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 key: const Key('alcoolField'),
                 controller: _alcoolController,
                 decoration: const InputDecoration(labelText: 'Preço do Álcool'),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
                 ],
-                validator: (value) => _validarCampo(value) ? null : 'Preço inválido',
+                validator: (value) =>
+                    _validarCampo(value) ? null : 'Preço inválido',
               ),
               const SizedBox(height: 16),
               TextFormField(
                 key: const Key('gasolinaField'),
                 controller: _gasolinaController,
-                decoration: const InputDecoration(labelText: 'Preço da Gasolina'),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration:
+                    const InputDecoration(labelText: 'Preço da Gasolina'),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
                 ],
-                validator: (value) => _validarCampo(value) ? null : 'Preço inválido',
+                validator: (value) =>
+                    _validarCampo(value) ? null : 'Preço inválido',
               ),
               const SizedBox(height: 24),
               ElevatedButton(
@@ -86,7 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 _mensagemResultado,
                 key: const Key('resultadoTexto'),
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ],
           ),

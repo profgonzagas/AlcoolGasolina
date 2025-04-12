@@ -71,16 +71,20 @@ class HomePageState extends State<HomePage> {
   void _calcular() {
     if (_formKey.currentState!.validate()) {
       final alcool = double.parse(_alcoolController.text.replaceAll(',', '.'));
-      final gasolina = double.parse(_gasolinaController.text.replaceAll(',', '.'));
-      final eficienciaAlcool = double.parse(_eficienciaAlcoolController.text.replaceAll(',', '.'));
-      final eficienciaGasolina = double.parse(_eficienciaGasolinaController.text.replaceAll(',', '.'));
+      final gasolina =
+          double.parse(_gasolinaController.text.replaceAll(',', '.'));
+      final eficienciaAlcool =
+          double.parse(_eficienciaAlcoolController.text.replaceAll(',', '.'));
+      final eficienciaGasolina =
+          double.parse(_eficienciaGasolinaController.text.replaceAll(',', '.'));
 
       setState(() {
         _relacao = calcularRelacao(alcool, gasolina);
         _custoPorKmAlcool = calcularCustoPorKm(alcool, eficienciaAlcool);
         _custoPorKmGasolina = calcularCustoPorKm(gasolina, eficienciaGasolina);
 
-        _resultado = 'É mais vantajoso abastecer com ${calcularMelhorCombustivel(alcool, gasolina)}';
+        _resultado =
+            'É mais vantajoso abastecer com ${calcularMelhorCombustivel(alcool, gasolina)}';
         _resultadoColor = _relacao < 0.7 ? Colors.green : Colors.blue;
         _showDetails = true;
       });
@@ -147,9 +151,11 @@ class HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            _buildCampoTexto(_alcoolController, 'Preço do Álcool (R\$)', Icons.local_gas_station),
+            _buildCampoTexto(_alcoolController, 'Preço do Álcool (R\$)',
+                Icons.local_gas_station),
             const SizedBox(height: 16),
-            _buildCampoTexto(_gasolinaController, 'Preço da Gasolina (R\$)', Icons.local_gas_station),
+            _buildCampoTexto(_gasolinaController, 'Preço da Gasolina (R\$)',
+                Icons.local_gas_station),
           ],
         ),
       ),
@@ -168,16 +174,19 @@ class HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            _buildCampoTexto(_eficienciaAlcoolController, 'Km/L com Álcool', Icons.speed),
+            _buildCampoTexto(
+                _eficienciaAlcoolController, 'Km/L com Álcool', Icons.speed),
             const SizedBox(height: 16),
-            _buildCampoTexto(_eficienciaGasolinaController, 'Km/L com Gasolina', Icons.speed),
+            _buildCampoTexto(_eficienciaGasolinaController, 'Km/L com Gasolina',
+                Icons.speed),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCampoTexto(TextEditingController controller, String label, IconData icon) {
+  Widget _buildCampoTexto(
+      TextEditingController controller, String label, IconData icon) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
@@ -202,7 +211,8 @@ class HomePageState extends State<HomePage> {
               backgroundColor: Colors.blue,
             ),
             onPressed: _calcular,
-            child: const Text('CALCULAR', style: TextStyle(color: Colors.white)),
+            child:
+                const Text('CALCULAR', style: TextStyle(color: Colors.white)),
           ),
         ),
         const SizedBox(width: 10),
@@ -241,13 +251,17 @@ class HomePageState extends State<HomePage> {
                 ),
                 TextButton(
                   onPressed: () => setState(() => _showDetails = !_showDetails),
-                  child: Text(_showDetails ? 'Ocultar detalhes' : 'Mostrar detalhes'),
+                  child: Text(
+                      _showDetails ? 'Ocultar detalhes' : 'Mostrar detalhes'),
                 ),
                 if (_showDetails) ...[
                   const SizedBox(height: 10),
-                  Text('Relação Álcool/Gasolina: ${_relacao.toStringAsFixed(3)}'),
-                  Text('Custo por km com Álcool: R\$ ${_custoPorKmAlcool.toStringAsFixed(3)}'),
-                  Text('Custo por km com Gasolina: R\$ ${_custoPorKmGasolina.toStringAsFixed(3)}'),
+                  Text(
+                      'Relação Álcool/Gasolina: ${_relacao.toStringAsFixed(3)}'),
+                  Text(
+                      'Custo por km com Álcool: R\$ ${_custoPorKmAlcool.toStringAsFixed(3)}'),
+                  Text(
+                      'Custo por km com Gasolina: R\$ ${_custoPorKmGasolina.toStringAsFixed(3)}'),
                 ],
               ],
             ),

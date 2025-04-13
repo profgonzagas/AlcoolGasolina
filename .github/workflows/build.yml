@@ -39,6 +39,9 @@ jobs:
        run: dart format --output=none --set-exit-if-changed .
        # --set-exit-if-changed stops execution if the code isn´t well formatted
        # --output=none prints files which needs to be formatted
+    #executar testes unitários
+     - name: Run tests
+       script: flutter test
 
     # Checks for Symantic errors. Can be configured using analysis_options.yaml
      - name: Analyze project source
